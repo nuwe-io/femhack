@@ -1,13 +1,13 @@
 {
-  "name": "virtual-event-starter-kit",
-  "description": "Starter kit for your virtual event.",
+  "name": "femhack",
+  "description": "International women-only hackathon",
   "private": true,
-  "repository": "vercel/virtual-event-starter-kit",
+  "repository": "femhack",
   "author": "Vercel Inc.",
-  "homepage": "https://demo.vercel.events",
+  "homepage": "https://femhack.nuwe.io",
   "license": "Apache-2.0",
   "engines": {
-    "node": "12.x"
+    "node": "16.x"
   },
   "scripts": {
     "dev": "next",
@@ -33,6 +33,7 @@
     "react": "17.0.1",
     "react-aria": "3.2.0",
     "react-dom": "17.0.1",
+    "sharp": "^0.29.1",
     "smoothscroll-polyfill": "0.4.4",
     "swr": "0.3.9",
     "validator": "13.5.2",
