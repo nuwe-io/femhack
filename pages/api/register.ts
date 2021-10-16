@@ -43,7 +43,9 @@ export default async function register(
   let statusCode: number;
   let name: string | undefined = undefined;
   let username: string | undefined = undefined;
+
   if (redis) {
+
     id = emailToId(email);
     const existingTicketNumberString = await redis.hget(`id:${id}`, 'ticketNumber');
 
@@ -83,7 +85,7 @@ export default async function register(
       sameSite: 'strict',
       secure: process.env.NODE_ENV === 'production',
       path: '/api',
-      expires: new Date(Date.now() + ms('7 days'))
+      expires: new Date(Date.now() + ms('100 days'))
     })
   );
 
