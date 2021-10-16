@@ -1,0 +1,47 @@
+.subtitle {
+  max-width: 576px;
+  margin: 36px auto;
+  letter-spacing: 0.1em;
+  line-height: 1.3em;
+}
+
+.countdown-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0 -8px 0 -8px;
+}
+
+.time-section {
+  padding: 0px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.time {
+  font-size: 72px;
+  line-height: 1.15;
+  letter-spacing: -0.05em;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.small {
+  font-size: 18px;
+}
+
+@media (min-width: 768px) {
+  .time {
+    font-size: 100px;
+    line-height: 1;
+    font-weight: 800;
+    margin: 0 0px 40px;
+  }
+
+  .small {
+    font-size: 32px;
+  }
+}
