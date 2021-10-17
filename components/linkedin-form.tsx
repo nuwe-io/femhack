@@ -197,7 +197,6 @@ export default function LinkedInForm({ defaultUsername = '', setTicketGeneration
             'Only public info will be used.'
           ) : (
             <>
-              <Linked></Linked> OAuth app is required.{' '}
               <a
                 href={`${REPO}#authentication`}
                 target="_blank"
