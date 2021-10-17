@@ -4,20 +4,13 @@ import * as qs from 'querystring';
 import redis from '@lib/redis';
 import { renderSuccess, renderError } from '@lib/render-github-popup';
 import axios from 'axios';
-/**
- * This API route must be triggered as a callback of your GitHub OAuth app.
- */
-export default async function linkedInOAuth(req: NextApiRequest, res: NextApiResponse) {
-  if (!req.query.code) {
-    res.end(renderSuccess());
-    return;
-  }
 
+export default async function linkedInOAuth(req: NextApiRequest, res: NextApiResponse) {
   const q = qs.stringify({
     grant_type: 'authorization_code',
     client_id: process.env.NEXT_PUBLIC_LINKEDIN_OAUTH_CLIENT_ID,
     client_secret: process.env.LINKEDIN_OAUTH_CLIENT_SECRET,
-    redirect_uri: encodeURIComponent(process.env.NEXT_PUBLIC_LINKEDIN_REDIRECT_URI || ''),
+    redirect_uri: encodeURI(process.env.NEXT_PUBLIC_LINKEDIN_REDIRECT_URI || ''),
     code: req.query.code
   });
   //const q =       `https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&client_id=${process.env.NEXT_PUBLIC_LINKEDIN_OAUTH_CLIENT_ID}&client_secret=${process.env.LINKEDIN_OAUTH_CLIENT_SECRET}&redirect_uri=${process.env.NEXT_PUBLIC_SITE_ORIGIN}&code=${req.query.code}`,
@@ -34,32 +27,48 @@ export default async function linkedInOAuth(req: NextApiRequest, res: NextApiRes
       return false;
     });
 
-  console.log(accessToken)  
-
-  if (!accessToken) {
+  if (accessToken === false) {
     res.statusCode = 500;
     res.end(renderError());
     return;
   }
 
-  const userRes = await fetch('https://api.linkedin.com/v2/me', {
-    headers: {
-      Authorization: `bearer ${accessToken as string}`
+  const user: any = await axios
+    .get('https://api.linkedin.com/v2/me', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    })
+    .then(respone => respone.data)
+    .catch(err => {
+      console.log(err);
+      return false;
+    });
+
+  if (!user) {
+    console.error(`Failed to get LikedIn user`);
+    res.statusCode = 500;
+    res.end(renderError());
+    return;
+  }
+
+  console.log(user);
+
+  const imageObj: any = await axios.get(
+    `https://api.linkedin.com/v2/me?projection=(${user.id},profilePicture(displayImage~:playableStreams))`,
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
     }
-  });
+  );
 
-  if (!userRes.ok) {
-    console.error(`Failed to get LikedIn user: ${userRes.status} ${await userRes.text()}`);
-    res.statusCode = 500;
-    res.end(renderError());
-    return;
-  }
-
-  const user = await userRes.json();
+  const iamgeURL =
+    imageObj.data.profilePicture['displayImage~']?.elements[2].identifiers[0].identifier;
 
   if (redis) {
     const token = nanoid();
-    const key = `linkedin-user:${token}`;
+    const key = `github-user:${token}`;
 
     await redis
       .multi()
@@ -68,15 +77,24 @@ export default async function linkedInOAuth(req: NextApiRequest, res: NextApiRes
         'id',
         user.id,
         'login',
-        user.profilePicture,
+        iamgeURL,
+        'image',
+        iamgeURL,
         'name',
-        user.firstname + ' ' + user.lastName || ''
+        user.localizedFirstName + ' ' + user.localizedLastName || ''
       )
       .expire(key, 60 * 10) // 10m TTL
       .exec();
 
     res.end(renderSuccess({ type: 'token', token }));
   } else {
-    res.end(renderSuccess({ type: 'user', login: user.login, name: user.name }));
+    res.end(
+      renderSuccess({
+        type: 'user',
+        login: user.login,
+        name: user.localizedFirstName + ' ' + user.localizedLastName,
+        image: iamgeURL
+      })
+    );
   }
 }

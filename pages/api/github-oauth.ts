@@ -60,12 +60,12 @@ export default async function githubOAuth(req: NextApiRequest, res: NextApiRespo
 
     await redis
       .multi()
-      .hmset(key, 'id', user.id, 'login', user.login, 'name', user.name || '')
+      .hmset(key, 'id', user.id, 'login', user.login, 'image', user.name, 'name', user.name || '')
       .expire(key, 60 * 10) // 10m TTL
       .exec();
 
     res.end(renderSuccess({ type: 'token', token }));
   } else {
-    res.end(renderSuccess({ type: 'user', login: user.login, name: user.name }));
+    res.end(renderSuccess({ type: 'user', login: user.login, name: user.name, image: '' }));
   }
 }

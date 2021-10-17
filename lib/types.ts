@@ -83,4 +83,5 @@ export type GitHubOAuthData =
       type: 'user';
       name: string;
       login: string;
+      image: string;
     };

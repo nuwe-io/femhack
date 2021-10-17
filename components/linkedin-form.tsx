@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { scrollTo } from '@lib/smooth-scroll';
 import cn from 'classnames';
-import GithubIcon from '@components/icons/icon-github';
+import * as qs from 'querystring';
 import CheckIcon from '@components/icons/icon-check';
 import { REPO, SITE_ORIGIN, TicketGenerationState } from '@lib/constants';
 import isMobileOrTablet from '@lib/is-mobile-or-tablet';
@@ -74,8 +74,15 @@ export default function LinkedInForm({ defaultUsername = '', setTicketGeneration
         const windowTop = window.top.outerHeight / 2 + window.top.screenY - 700 / 2;
         const windowLeft = window.top.outerWidth / 2 + window.top.screenX - 600 / 2;
 
+        const q = qs.stringify({
+          response_type: 'code',
+          client_id: process.env.NEXT_PUBLIC_LINKEDIN_OAUTH_CLIENT_ID,
+          redirect_uri: encodeURI(process.env.NEXT_PUBLIC_LINKEDIN_REDIRECT_URI || ''),
+          scope: 'r_liteprofile'
+        });
+
         const openedWindow = window.open(
-          `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${process.env.NEXT_PUBLIC_LINKEDIN_OAUTH_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_LINKEDIN_REDIRECT_URI}&scope=r_liteprofile&scope=r_emailaddress`,
+          `https://www.linkedin.com/oauth/v2/authorization?${q} `,
           `resizable,scrollbars,status,width=${windowWidth},height=${windowHeight},top=${windowTop},left=${windowLeft}`
         );
 
@@ -108,6 +115,7 @@ export default function LinkedInForm({ defaultUsername = '', setTicketGeneration
 
             let usernameFromResponse: string;
             let name: string;
+            let image: string;
             if (data.type === 'token') {
               const res = await saveGithubToken({ id: userData.id, token: data.token });
 
@@ -118,9 +126,11 @@ export default function LinkedInForm({ defaultUsername = '', setTicketGeneration
               const responseJson = await res.json();
               usernameFromResponse = responseJson.username;
               name = responseJson.name;
+              image = responseJson.image;
             } else {
               usernameFromResponse = data.login;
               name = data.name;
+              image = data.image;
             }
 
             document.body.classList.add('ticket-generated');
@@ -130,7 +140,7 @@ export default function LinkedInForm({ defaultUsername = '', setTicketGeneration
             setTicketGenerationState('default');
 
             // Prefetch GitHub avatar
-            new Image().src = `https://linkedin.com/in/${usernameFromResponse}.png`;
+            new Image().src = image;
 
             // Prefetch the twitter share URL to eagerly generate the page
             fetch(`/tickets/${usernameFromResponse}`).catch(_ => {});

@@ -7,11 +7,18 @@ import styles from './ticket-profile.module.css';
 type Props = {
   name?: string;
   username?: string;
+  image?: string;
   size?: number;
   ticketGenerationState: TicketGenerationState;
 };
 
-export default function TicketProfile({ name, username, size = 1, ticketGenerationState }: Props) {
+export default function TicketProfile({
+  name,
+  username,
+  image,
+  size = 1,
+  ticketGenerationState
+}: Props) {
   return (
     <div className={styles.profile}>
       <span
@@ -20,7 +27,11 @@ export default function TicketProfile({ name, username, size = 1, ticketGenerati
         })}
       >
         {username ? (
-          <img src={`https://github.com/${username}.png`} alt={username} className={styles.image} />
+          <img
+            src={image || `https://github.com/${username}.png`}
+            alt={username}
+            className={styles.image}
+          />
         ) : (
           <span className={cn(styles.image, styles['empty-icon'])}>
             <IconAvatar />
