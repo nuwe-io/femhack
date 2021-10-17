@@ -76,7 +76,7 @@
 }
 
 .field * {
-  color: var(--secondary-color);
+  color: black;
   transition: color 0.2s ease;
 }
 
@@ -91,7 +91,6 @@
   overflow-x: scroll;
   white-space: nowrap;
   display: block;
-
   padding: var(--space-2x) 14px;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -119,7 +118,7 @@
 
 .fade {
   position: absolute;
-  background: linear-gradient(90deg, rgba(37, 39, 41, 0%) 0%, #252729 100%);
+  background: var(--secondary-color);
   top: 0;
   bottom: 0;
   right: 0px;
@@ -146,10 +145,11 @@
 .copied {
   display: flex;
   z-index: 2;
+  padding-right: 10px;
   align-items: center;
   justify-content: flex-end;
   opacity: 0;
-  transition: opacity 0.2s ease !important;
+  transition: opacity 0.3s ease !important;
 }
 
 .copied.visible {

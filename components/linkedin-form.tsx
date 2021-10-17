@@ -11,6 +11,7 @@ import formStyles from './form.module.css';
 import ticketFormStyles from './ticket-form.module.css';
 import { saveGithubToken } from '@lib/user-api';
 import { GitHubOAuthData } from '@lib/types';
+import IconLinkedin from './icons/icon-linkedin';
 
 type FormState = 'default' | 'loading' | 'error';
 
@@ -21,7 +22,7 @@ type Props = {
 
 const githubEnabled = Boolean(process.env.NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID);
 
-export default function Form({ defaultUsername = '', setTicketGenerationState }: Props) {
+export default function LinkedInForm({ defaultUsername = '', setTicketGenerationState }: Props) {
   const [username, setUsername] = useState(defaultUsername);
   const [formState, setFormState] = useState<FormState>('default');
   const [errorMsg, setErrorMsg] = useState('');
@@ -61,9 +62,9 @@ export default function Form({ defaultUsername = '', setTicketGenerationState }:
         setFormState('loading');
         setTicketGenerationState('loading');
 
-        if (!process.env.NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID) {
+        if (!process.env.NEXT_PUBLIC_LINKEDIN_OAUTH_CLIENT_ID) {
           setFormState('error');
-          setErrorMsg('GitHub OAuth App must be set up.');
+          setErrorMsg('LinkedIn OAuth App must be set up.');
           return;
         }
 
@@ -74,10 +75,7 @@ export default function Form({ defaultUsername = '', setTicketGenerationState }:
         const windowLeft = window.top.outerWidth / 2 + window.top.screenX - 600 / 2;
 
         const openedWindow = window.open(
-          `https://github.com/login/oauth/authorize?client_id=${encodeURIComponent(
-            process.env.NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID
-          )}`,
-          'githubOAuth',
+          `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${process.env.NEXT_PUBLIC_LINKEDIN_OAUTH_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_LINKEDIN_REDIRECT_URI}&scope=r_liteprofile&scope=r_emailaddress`,
           `resizable,scrollbars,status,width=${windowWidth},height=${windowHeight},top=${windowTop},left=${windowLeft}`
         );
 
@@ -132,7 +130,7 @@ export default function Form({ defaultUsername = '', setTicketGenerationState }:
             setTicketGenerationState('default');
 
             // Prefetch GitHub avatar
-            new Image().src = `https://github.com/${usernameFromResponse}.png`;
+            new Image().src = `https://linkedin.com/in/${usernameFromResponse}.png`;
 
             // Prefetch the twitter share URL to eagerly generate the page
             fetch(`/tickets/${usernameFromResponse}`).catch(_ => {});
@@ -158,7 +156,7 @@ export default function Form({ defaultUsername = '', setTicketGenerationState }:
             }
           )}
           disabled={
-            !process.env.NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID ||
+            !process.env.NEXT_PUBLIC_LINKEDIN_OAUTH_CLIENT_ID ||
             formState === 'loading' ||
             Boolean(username)
           }
@@ -170,12 +168,12 @@ export default function Form({ defaultUsername = '', setTicketGenerationState }:
         >
           <div className={ticketFormStyles.generateWithGithub}>
             <span className={ticketFormStyles.githubIcon}>
-              <GithubIcon color="#fff" size={24} />
+              <IconLinkedin color="#fff" size={24} />
             </span>
             {formState === 'loading' ? (
               <LoadingDots size={4} />
             ) : (
-              username || 'Generate with GitHub'
+              username || 'Generate with Linkedin'
             )}
           </div>
           {username ? (
@@ -186,10 +184,10 @@ export default function Form({ defaultUsername = '', setTicketGenerationState }:
         </button>
         <p className={ticketFormStyles.description}>
           {githubEnabled ? (
-            ''
+            'Only public info will be used.'
           ) : (
             <>
-              GitHub OAuth app is required.{' '}
+              <Linked></Linked> OAuth app is required.{' '}
               <a
                 href={`${REPO}#authentication`}
                 target="_blank"

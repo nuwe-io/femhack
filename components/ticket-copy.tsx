@@ -89,12 +89,6 @@ export default function TicketCopy({ username }: Props) {
         >
           {url}
         </span>
-        <span
-          className={cn(styles.fade, {
-            [styles['desktop-copy-disabled']]: !copyEnabled
-          })}
-          style={{ opacity: fadeOpacity }}
-        />
         <div
           className={cn(styles['desktop-copy'], styleUtils['hide-on-mobile'], {
             [styles['desktop-copy-disabled']]: !copyEnabled
