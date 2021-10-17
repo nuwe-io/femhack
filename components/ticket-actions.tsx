@@ -61,7 +61,7 @@ export default function TicketActions({ username }: Props) {
         rel="noopener noreferrer"
         target="_blank"
       >
-        <IconLinkedin width={20} /> Share on LinkedIn
+        <IconLinkedin color="white" size={20} /> Share on LinkedIn
       </a>
       <a
         className={cn(styles.button, styleUtils.appear, styles.third, 'icon-button', {
