@@ -7,7 +7,7 @@ import styleUtils from './utils.module.css';
 import ScheduleSidebar from './schedule-sidebar';
 import ConfEntry from './conf-entry';
 import Timer from './timer';
-import { TwitchEmbed, TwitchChat, TwitchClip, TwitchPlayer } from 'react-twitch-embed';
+//import { TwitchEmbed, TwitchChat, TwitchClip, TwitchPlayer } from 'react-twitch-embed';
 
 type Props = {
   stage: Stage;
