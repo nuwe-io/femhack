@@ -161,7 +161,7 @@ export default function Form({ defaultUsername = '', setTicketGenerationState }:
     setTicketGenerationState('loading');
 
     await axios
-      .post(`${process.env.NEXT_PUBLIC_SITE_ORIGIN}api/set-user-info`, {
+      .post(`${process.env.NEXT_PUBLIC_SITE_ORIGIN}/api/set-user-info`, {
         id: userData.id,
         username: name.toLowerCase().split(' ').join(''),
         name: name,
