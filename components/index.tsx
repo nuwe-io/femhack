@@ -20,6 +20,8 @@ export default function Conf({
   const [userData, setUserData] = useState<UserData>(defaultUserData);
   const [pageState, setPageState] = useState<PageState>(defaultPageState);
 
+  console.log(userData);
+
   return (
     <ConfDataContext.Provider
       value={{
@@ -39,6 +41,7 @@ export default function Conf({
             <Ticket
               username={userData.username}
               name={userData.name}
+              image={userData.image}
               ticketNumber={userData.ticketNumber}
               sharePage={sharePage}
             />

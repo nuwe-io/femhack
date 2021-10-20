@@ -6,6 +6,8 @@ import styles from './stage-container.module.css';
 import styleUtils from './utils.module.css';
 import ScheduleSidebar from './schedule-sidebar';
 import ConfEntry from './conf-entry';
+import Timer from './timer';
+import { TwitchEmbed, TwitchChat, TwitchClip, TwitchPlayer } from 'react-twitch-embed';
 
 type Props = {
   stage: Stage;
@@ -27,14 +29,16 @@ export default function StageContainer({ stage, allStages }: Props) {
       <div className={styles.streamContainer}>
         {loginStatus === 'loggedIn' ? (
           <div className={cn(styles.stream, styleUtils.appear, styleUtils['appear-first'])}>
-            <iframe
-              allow="autoplay; picture-in-picture"
-              allowFullScreen
-              frameBorder="0"
-              src={`${updatedStage.stream}?autoplay=1&mute=1`}
-              title={updatedStage.name}
-              width="100%"
-            />
+            <Timer />
+            {/*<div>
+              <TwitchEmbed
+                style={{ width: '100%', height: 600 }}
+                channel="Nuwe_io"
+                id="nuwe_io"
+                theme="dark"
+                muted
+              />
+            </div>*/}
             <div className={cn(styles.bottom, styleUtils.appear, styleUtils['appear-second'])}>
               <div className={styles.messageContainer}>
                 <h2 className={styles.stageName}>{stage.name}</h2>

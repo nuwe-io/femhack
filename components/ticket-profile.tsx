@@ -3,6 +3,7 @@ import GithubIcon from '@components/icons/icon-github';
 import cn from 'classnames';
 import IconAvatar from './icons/icon-avatar';
 import styles from './ticket-profile.module.css';
+import IconShare from './icons/icon-share';
 
 type Props = {
   name?: string;
@@ -28,7 +29,7 @@ export default function TicketProfile({
       >
         {username ? (
           <img
-            src={image || `https://github.com/${username}.png`}
+            src={image || `https://robohash.org/${Math.random()}?set=set4`}
             alt={username}
             className={styles.image}
           />
@@ -59,7 +60,7 @@ export default function TicketProfile({
             })}
           >
             <span className={styles.githubIcon}>
-              <GithubIcon color="var(--secondary-color)" size={20 * size} />
+              <IconShare color="var(--secondary-color)" size={20 * size} />
             </span>
             {username || <>username</>}
           </span>

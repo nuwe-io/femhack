@@ -12,16 +12,16 @@ import TicketVisual from './ticket-visual';
 import TicketActions from './ticket-actions';
 import TicketCopy from './ticket-copy';
 import Form from './form';
-import LinkedInForm from './linkedin-form';
 
 type Props = {
   username: UserData['username'];
   ticketNumber: UserData['ticketNumber'];
   name: UserData['name'];
+  image: UserData['image'];
   sharePage?: boolean;
 };
 
-export default function Ticket({ username, name, ticketNumber, sharePage }: Props) {
+export default function Ticket({ username, ticketNumber, name, image, sharePage }: Props) {
   const ticketRef = useRef<HTMLDivElement>(null);
   const [ticketGenerationState, setTicketGenerationState] = useState<TicketGenerationState>(
     'default'
@@ -74,7 +74,7 @@ export default function Ticket({ username, name, ticketNumber, sharePage }: Prop
             ) : (
               <>
                 Generate a unique ticket image with <br className={styleUtils['hide-on-mobile']} />
-                your GitHub profile.
+                your name and selected image.
               </>
             )}
           </p>
@@ -83,10 +83,6 @@ export default function Ticket({ username, name, ticketNumber, sharePage }: Prop
           {!sharePage ? (
             <>
               <TicketForm
-                defaultUsername={username}
-                setTicketGenerationState={setTicketGenerationState}
-              />
-              <LinkedInForm
                 defaultUsername={username}
                 setTicketGenerationState={setTicketGenerationState}
               />
@@ -104,6 +100,7 @@ export default function Ticket({ username, name, ticketNumber, sharePage }: Prop
           <TicketVisual
             username={username}
             name={name}
+            image={image}
             ticketNumber={ticketNumber}
             ticketGenerationState={ticketGenerationState}
           />

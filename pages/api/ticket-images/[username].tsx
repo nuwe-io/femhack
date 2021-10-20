@@ -5,19 +5,29 @@ import redis from '@lib/redis';
 
 export default async function ticketImages(req: NextApiRequest, res: NextApiResponse) {
   let url: string;
+
   const { username } = req.query || {};
+
   if (username) {
     if (redis) {
       const usernameString = username.toString();
-      const [name, ticketNumber] = await redis.hmget(
+
+      const info: any = await redis.hmget(
         `user:${usernameString}`,
         'name',
+        'image',
         'ticketNumber'
       );
+
+      const name = info[0];
+      const image = info[1];
+      const ticketNumber = info[2];
+
       if (!ticketNumber) {
         res.statusCode = 404;
-        return res.end('Not Found');
+        return res.end(`Not Found ${image}`);
       }
+
       url = `${SITE_URL}/ticket-image?username=${encodeURIComponent(
         usernameString
       )}&ticketNumber=${encodeURIComponent(ticketNumber)}`;

@@ -43,16 +43,17 @@ export default async function register(
   let statusCode: number;
   let name: string | undefined = undefined;
   let username: string | undefined = undefined;
+  let image: string | undefined = undefined;
 
   if (redis) {
-
     id = emailToId(email);
     const existingTicketNumberString = await redis.hget(`id:${id}`, 'ticketNumber');
 
     if (existingTicketNumberString) {
-      const item = await redis.hmget(`id:${id}`, 'name', 'username', 'createdAt');
+      const item = await redis.hmget(`id:${id}`, 'name', 'username', 'image', 'createdAt');
       name = item[0]!;
       username = item[1]!;
+      image = item[2]!;
       ticketNumber = parseInt(existingTicketNumberString, 10);
       createdAt = parseInt(item[2]!, 10);
       statusCode = 200;
@@ -95,6 +96,7 @@ export default async function register(
     ticketNumber,
     createdAt,
     name,
-    username
+    username,
+    image
   });
 }

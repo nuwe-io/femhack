@@ -2,10 +2,10 @@ import { GetStaticProps } from 'next';
 
 import Page from '@components/page';
 import Layout from '@components/layout';
-import Timer from '@components/timer';
 import { getAllStages } from '@lib/cms-api';
 import { Stage } from '@lib/types';
 import { META_DESCRIPTION } from '@lib/constants';
+import StageContainer from '@components/stage-container';
 
 type Props = {
   stage: Stage;
@@ -20,13 +20,15 @@ export default function StagePage({ stage, allStages }: Props) {
 
   return (
     <Page meta={meta} fullViewport>
-      <Layout>{<Timer /> /*<StageContainer stage={stage} allStages={allStages} />*/}</Layout>
+      <Layout>
+        <StageContainer stage={stage} allStages={allStages} />
+      </Layout>
     </Page>
   );
 }
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  const slug = 'back';
+  const slug = 'friday';
   const stages = await getAllStages();
   const stage = stages.find((s: Stage) => s.slug === slug) || null;
 

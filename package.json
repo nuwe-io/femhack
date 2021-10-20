@@ -7,7 +7,7 @@
   "homepage": "https://femhack.nuwe.io",
   "license": "Apache-2.0",
   "engines": {
-    "node": "14.x"
+    "node": "16.x"
   },
   "scripts": {
     "dev": "next",
@@ -35,6 +35,8 @@
     "react": "17.0.1",
     "react-aria": "3.2.0",
     "react-dom": "17.0.1",
+    "react-twitch-embed": "^2.1.0",
+    "react-twitch-embed-video": "^3.0.1",
     "sharp": "^0.29.1",
     "smoothscroll-polyfill": "0.4.4",
     "swr": "0.3.9",

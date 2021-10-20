@@ -12,10 +12,17 @@ type Props = {
   username: string | null;
   usernameFromParams: string | null;
   name: string | null;
+  image: string | undefined;
   ticketNumber: number | null;
 };
 
-export default function TicketShare({ username, ticketNumber, name, usernameFromParams }: Props) {
+export default function TicketShare({
+  username,
+  ticketNumber,
+  name,
+  image,
+  usernameFromParams
+}: Props) {
   if (!ticketNumber) {
     return <Error statusCode={404} />;
   }
@@ -24,13 +31,13 @@ export default function TicketShare({ username, ticketNumber, name, usernameFrom
     ? {
         title: `${name}’s ${SITE_NAME} Ticket`,
         description: META_DESCRIPTION,
-        image: `/api/ticket-images/${username}`,
+        image: image,
         url: `${SITE_URL}/tickets/${username}`
       }
     : {
         title: 'Ticket Demo - Virtual Event Starter Kit',
         description: META_DESCRIPTION,
-        image: `/api/ticket-images/${usernameFromParams}`,
+        image: image,
         url: `${SITE_URL}/tickets/${usernameFromParams}`
       };
 
@@ -44,6 +51,7 @@ export default function TicketShare({ username, ticketNumber, name, usernameFrom
         defaultUserData={{
           username: username || undefined,
           name: name || '',
+          image: image,
           ticketNumber
         }}
         sharePage
@@ -57,7 +65,12 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 
   if (redis) {
     if (username) {
-      const [name, ticketNumber] = await redis.hmget(`user:${username}`, 'name', 'ticketNumber');
+      const [name, image, ticketNumber] = await redis.hmget(
+        `user:${username}`,
+        'name',
+        'image',
+        'ticketNumber'
+      );
 
       if (ticketNumber) {
         return {
@@ -65,6 +78,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
             username: username || null,
             usernameFromParams: username || null,
             name: name || username || null,
+            image: image || undefined,
             ticketNumber: parseInt(ticketNumber, 10) || null
           },
           revalidate: 5
@@ -76,6 +90,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
         username: null,
         usernameFromParams: username || null,
         name: null,
+        image: undefined,
         ticketNumber: null
       },
       revalidate: 5
@@ -86,6 +101,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
         username: null,
         usernameFromParams: username || null,
         name: null,
+        image: undefined,
         ticketNumber: SAMPLE_TICKET_NUMBER
       },
       revalidate: 5

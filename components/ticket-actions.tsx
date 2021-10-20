@@ -61,30 +61,7 @@ export default function TicketActions({ username }: Props) {
         rel="noopener noreferrer"
         target="_blank"
       >
-        <IconLinkedin color="white" size={20} /> Share on LinkedIn
-      </a>
-      <a
-        className={cn(styles.button, styleUtils.appear, styles.third, 'icon-button', {
-          [styles.loading]: loading
-        })}
-        href={loading ? undefined : downloadUrl}
-        onClick={e => {
-          if (imgReady) return;
-
-          e.preventDefault();
-          downloadLink.current = e.currentTarget;
-          // Wait for the image download to finish
-          setLoading(true);
-        }}
-        download="ticket.png"
-      >
-        {loading ? (
-          <LoadingDots size={4} />
-        ) : (
-          <>
-            <IconDownload width={24} /> Download
-          </>
-        )}
+        <IconLinkedin size={20} /> Share on LinkedIn
       </a>
     </>
   );

@@ -7,6 +7,7 @@ export type UserData = {
   ticketNumber?: number;
   username?: string;
   name?: string;
+  image?: string;
 };
 
 type ConfDataContextType = {
