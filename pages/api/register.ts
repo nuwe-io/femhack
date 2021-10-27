@@ -6,6 +6,7 @@ import { SAMPLE_TICKET_NUMBER, COOKIE } from '@lib/constants';
 import cookie from 'cookie';
 import ms from 'ms';
 import redis, { emailToId } from '@lib/redis';
+import sendUserChallengeInvite from './email';
 
 type ErrorResponse = {
   error: {
@@ -37,13 +38,16 @@ export default async function register(
     });
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+  await sendUserChallengeInvite(email);
+
   let id;
   let ticketNumber: number;
   let createdAt: number;
   let statusCode: number;
-  let name: string | undefined = undefined;
-  let username: string | undefined = undefined;
-  let image: string | undefined = undefined;
+  let name: string | undefined;
+  let username: string | undefined;
+  let image: string | undefined;
 
   if (redis) {
     id = emailToId(email);

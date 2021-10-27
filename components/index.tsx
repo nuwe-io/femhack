@@ -20,8 +20,6 @@ export default function Conf({
   const [userData, setUserData] = useState<UserData>(defaultUserData);
   const [pageState, setPageState] = useState<PageState>(defaultPageState);
 
-  console.log(userData);
-
   return (
     <ConfDataContext.Provider
       value={{

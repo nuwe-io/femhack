@@ -7,7 +7,7 @@ const redis = process.env.REDIS_URL
       host: process.env.REDIS_URL,
       password: process.env.REDIS_PASSWORD,
       tls:
-        process.env.REDIS_SSL_ENABLED && process.env.REDIS_SSL_ENABLED != 'false' ? {} : undefined
+        process.env.REDIS_SSL_ENABLED && process.env.REDIS_SSL_ENABLED !== 'false' ? {} : undefined
     })
   : undefined;
 
