@@ -1,7 +1,7 @@
 {
-  "name": "Virtual Event Starter Kit",
-  "short_name": "Virtual Event Starter Kit",
-  "description": "Virtual Event Starter Kit -> https://demo.vercel.events",
+  "name": "International female-only hackathon",
+  "short_name": "FemHack consists of an online hackathon where women programmers will have to develop different challenges in the modalities of Frontend, Backend, Mobile, or/and Data Science.",
+  "description": "",
   "display": "standalone",
   "start_url": "/",
   "theme_color": "#fff",
@@ -9,14 +9,9 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/icon-192x192.png",
+      "src": "/femhack.png",
       "type": "image/png",
       "sizes": "192x192"
-    },
-    {
-      "src": "/icon-512x512.png",
-      "type": "image/png",
-      "sizes": "512x512"
     }
   ]
 }

@@ -1,0 +1,43 @@
+.button {
+  border-radius: var(--space-2x);
+  border: none;
+  color: var(--brand);
+  background: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--text-md);
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  outline: none;
+  transition: background-color 0.2s ease;
+  padding: 0 var(--space-4x);
+  height: 50px;
+  width: 400px;
+  min-width: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.primary {
+  background: var(--brand);
+  color: #fff;
+}
+
+.button:hover,
+.button:focus {
+  background: black;
+  color: var(--brand);
+  border: 1px solid var(--brand);
+}
+
+.button:hover > svg,
+.button:focus > svg {
+  fill: var(--brand);
+}
+
+.button > svg {
+  margin-left: var(--space-2x);
+  min-height: var(--space-8x);
+  min-width: var(--space-8x);
+}
