@@ -34,13 +34,15 @@ export default function Join() {
     <Page meta={meta}>
       <Layout>
         <ConfContainer>
-          <div style={{ margin: 'auto', textAlign: 'center' }}>
-            <img
-              className={cn(styleUtils.appear, styleUtils['appear-first'])}
-              alt="femhackLogo"
-              width="330px"
-              src="/femhackFull.png"
-            />
+          <div className={heroStyles.wrapper}>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <img
+                className={cn(styleUtils.appear, styleUtils['appear-first'])}
+                alt="femhackLogo"
+                width="330px"
+                src="/femhackFull.png"
+              />
+            </div>
             <h1 className={cn(styleUtils.appear, styleUtils['appear-second'], heroStyles.hero)}>
               Break the algorithm
             </h1>
@@ -60,11 +62,7 @@ export default function Join() {
 
                 <div style={{ margin: '20px' }}>
                   <Link href="/">
-                    <button
-                      id="button"
-                      type="button"
-                      className={cn(styles.button, styles.primary)}
-                    >
+                    <button id="button" type="button" className={cn(styles.button, styles.primary)}>
                       Join the conferences
                     </button>
                   </Link>
