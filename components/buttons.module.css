@@ -19,6 +19,12 @@
   justify-content: center;
 }
 
+.buttonsdiv {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
 .primary {
   background: var(--brand);
   color: #fff;
@@ -31,6 +37,11 @@
   border: 1px solid var(--brand);
 }
 
+.pdiv {
+  margin: var(--space-4x);
+  color: #fff;
+}
+
 .button:hover > svg,
 .button:focus > svg {
   fill: var(--brand);
@@ -40,4 +51,13 @@
   margin-left: var(--space-2x);
   min-height: var(--space-8x);
   min-width: var(--space-8x);
+}
+
+@media (max-width: 568px) {
+  .buttonsdiv {
+    flex-direction: column;
+  }
+  .button {
+    width: 100%;
+  }
 }

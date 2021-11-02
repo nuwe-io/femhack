@@ -47,11 +47,11 @@ export default function Join() {
               Break the algorithm
             </h1>
             <div className={cn(styleUtils.appear, styleUtils['appear-third'])}>
-              <p style={{ color: 'white' }}>
+              <p className={styles.pdiv}>
                 If you join as a competetior you'll also be joining as a viewer, so do not worry.
                 We'll keep you updated every step of the way
               </p>
-              <div style={{ margin: 'auto', display: 'flex', justifyContent: 'center' }}>
+              <div className={styles.buttonsdiv}>
                 <div style={{ margin: '20px' }}>
                   <Link href="https://nuwe.io/femhack">
                     <button type="button" className={styles.button}>
