@@ -38,9 +38,6 @@ export default async function register(
     });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-  await sendUserChallengeInvite(email);
-
   let id;
   let ticketNumber: number;
   let createdAt: number;
@@ -74,6 +71,8 @@ export default async function register(
         createdAt
       );
       statusCode = 201;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      await sendUserChallengeInvite(email);
     }
   } else {
     id = nanoid();
