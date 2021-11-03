@@ -76,7 +76,9 @@ const liveEmail = {
 };
 
 export default async function sendUserChallengeInvite(email: string) {
-  const accessToken: any = await oAuth2Client.getAccessToken();
+  const accessToken: any = await oAuth2Client.getAccessToken().catch(err => console.log(err));
+
+  if (!accessToken) throw new Error('No access token');
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',

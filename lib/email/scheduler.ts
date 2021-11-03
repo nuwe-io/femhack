@@ -44,11 +44,24 @@ const setUpSchdule = (rule: schedule.RecurrenceRule, date: Date) => {
  * @param {ScheduleObject} Object That contains the email and date information
  */
 export const scheduleEmail = ({ setDate, transporter, mailOptions }: ScheduleObject) => {
-  console.log("Step 4")
+  console.log('Step 4');
   const rule = new schedule.RecurrenceRule();
   setUpSchdule(rule, setDate);
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  schedule.scheduleJob(rule, async () => await transporter.sendMail(mailOptions));
+  schedule.scheduleJob(rule, async () => {
+    return await new Promise((resolve, reject) => {
+      // send mail
+      transporter.sendMail(mailOptions, (err, info) => {
+        if (err) {
+          console.error(err);
+          reject(err);
+        } else {
+          console.log(info);
+          resolve(info);
+        }
+      });
+    });
+  });
 };
 
 /**
@@ -63,16 +76,27 @@ export const scheduleEmailPipeline = async (
   followup: PipelineAlert,
   lastAlert: PipelineAlert
 ) => {
-
-  console.log("Step 2")
+  console.log('Step 2');
   // Convert to UTC+2
   const date = new Date(setDate);
   const followupDate = moment(date).subtract(followup.time, followup.type).toString();
   const beforeStart = moment(date).subtract(lastAlert.time, lastAlert.type).toString();
 
   // First email once they have joined
-  console.log("Step 3")
-  await transporter.sendMail(mailOptions);
+  console.log('Step 3');
+
+  await new Promise((resolve, reject) => {
+    // send mail
+    transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        console.error(err);
+        reject(err);
+      } else {
+        console.log(info);
+        resolve(info);
+      }
+    });
+  });
 
   // Followup
   scheduleEmail({ setDate: new Date(followupDate), transporter, mailOptions: followOptions });
