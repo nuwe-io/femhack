@@ -182,12 +182,12 @@ export const sendSimpleEmail = async (email: string) => {
 
   // create reusable transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
-    secure: false, // true for 465, false for other ports
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, // true for 465, false for other ports
     auth: {
-      user: testAccount.user, // generated ethereal user
-      pass: testAccount.pass // generated ethereal password
+      user: 'hello@nuwe.io', // generated ethereal user
+      pass: 'Nuwe.ioGsuite9!' // generated ethereal password
     }
   });
 
