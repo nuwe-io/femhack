@@ -6,7 +6,7 @@ import { SAMPLE_TICKET_NUMBER, COOKIE } from '@lib/constants';
 import cookie from 'cookie';
 import ms from 'ms';
 import redis, { emailToId } from '@lib/redis';
-import sendUserChallengeInvite from './email';
+import sendSimpleEmail from './email';
 
 type ErrorResponse = {
   error: {
@@ -59,7 +59,7 @@ export default async function register(
       createdAt = parseInt(item[2]!, 10);
       statusCode = 200;
     } else {
-      // await sendUserChallengeInvite(email);
+      await sendSimpleEmail(email);
       ticketNumber = await redis.incr('count');
       createdAt = Date.now();
       await redis.hmset(

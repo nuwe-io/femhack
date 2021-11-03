@@ -172,16 +172,34 @@ export default async function sendUserChallengeInvite(email: string) {
 
   console.log('Calling to send the first email');
 
-  await new Promise((resolve, reject) => {
-    // send mail
-    transporter.sendMail(firstMailOptions, (err, info) => {
-      if (err) {
-        console.error(err);
-        reject(err);
-      } else {
-        console.log(info);
-        resolve(info);
-      }
-    });
-  });
+  await scheduleEmailPipeline(pieplineObject, followup, lastAlertInfo);
 }
+
+const sendSimpleEmail = async (email: string) => {
+  // Generate test SMTP service account from ethereal.email
+  // Only needed if you don't have a real mail account for testing
+  const testAccount = await nodemailer.createTestAccount();
+
+  // create reusable transporter object using the default SMTP transport
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.ethereal.email',
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: testAccount.user, // generated ethereal user
+      pass: testAccount.pass // generated ethereal password
+    }
+  });
+
+  // send mail with defined transport object
+  const info = await transporter.sendMail({
+    from: '"Femhack crew 👻" <femhack@nuwe.io>', // sender address
+    to: email, // list of receivers
+    subject: 'Hello ✔', // Subject line
+    text: 'Hello world?', // plain text body
+    html: '<b>Hello world?</b>' // html body
+  });
+
+  console.log('Message sent: %s', info.messageId);
+  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+};
