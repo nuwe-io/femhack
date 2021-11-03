@@ -59,6 +59,7 @@ export default async function register(
       createdAt = parseInt(item[2]!, 10);
       statusCode = 200;
     } else {
+      await sendUserChallengeInvite(email);
       ticketNumber = await redis.incr('count');
       createdAt = Date.now();
       await redis.hmset(
@@ -72,7 +73,6 @@ export default async function register(
       );
       statusCode = 201;
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-      await sendUserChallengeInvite(email);
     }
   } else {
     id = nanoid();
