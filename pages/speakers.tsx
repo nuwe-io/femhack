@@ -1,5 +1,3 @@
-
-
 import { GetStaticProps } from 'next';
 
 import Page from '@components/page';
@@ -17,7 +15,7 @@ type Props = {
 
 export default function Speakers({ speakers }: Props) {
   const meta = {
-    title: 'Speakers - Virtual Event Starter Kit',
+    title: 'Femhack speakers',
     description: META_DESCRIPTION
   };
   return (

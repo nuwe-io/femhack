@@ -26,7 +26,7 @@ import ConfContainer from '@components/conf-container';
 
 export default function Join() {
   const meta = {
-    title: 'Schedule - Virtual Event Starter Kit',
+    title: 'Join the Femhack! - The international women-only hackthon',
     description: META_DESCRIPTION
   };
 
@@ -55,7 +55,7 @@ export default function Join() {
                 <div style={{ margin: '20px' }}>
                   <Link href="https://nuwe.io/femhack">
                     <button type="button" className={styles.button}>
-                      Be a competetior
+                      Be a competitor
                     </button>
                   </Link>
                 </div>
