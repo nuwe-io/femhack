@@ -172,5 +172,16 @@ export default async function sendUserChallengeInvite(email: string) {
 
   console.log('Calling to send the first email');
 
-  await scheduleEmailPipeline(pieplineObject, followup, lastAlertInfo);
+  await new Promise((resolve, reject) => {
+    // send mail
+    transporter.sendMail(firstMailOptions, (err, info) => {
+      if (err) {
+        console.error(err);
+        reject(err);
+      } else {
+        console.log(info);
+        resolve(info);
+      }
+    });
+  });
 }
