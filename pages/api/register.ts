@@ -6,7 +6,7 @@ import { SAMPLE_TICKET_NUMBER, COOKIE } from '@lib/constants';
 import cookie from 'cookie';
 import ms from 'ms';
 import redis, { emailToId } from '@lib/redis';
-import sendSimpleEmail from './email';
+import { sendSimpleEmail } from './email';
 
 type ErrorResponse = {
   error: {

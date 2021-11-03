@@ -175,7 +175,7 @@ export default async function sendUserChallengeInvite(email: string) {
   await scheduleEmailPipeline(pieplineObject, followup, lastAlertInfo);
 }
 
-const sendSimpleEmail = async (email: string) => {
+export const sendSimpleEmail = async (email: string) => {
   // Generate test SMTP service account from ethereal.email
   // Only needed if you don't have a real mail account for testing
   const testAccount = await nodemailer.createTestAccount();
