@@ -6,7 +6,7 @@ import { SAMPLE_TICKET_NUMBER, COOKIE } from '@lib/constants';
 import cookie from 'cookie';
 import ms from 'ms';
 import redis, { emailToId } from '@lib/redis';
-import { sendSimpleEmail } from './email';
+import axios from 'axios';
 
 type ErrorResponse = {
   error: {
@@ -59,7 +59,8 @@ export default async function register(
       createdAt = parseInt(item[2]!, 10);
       statusCode = 200;
     } else {
-      await sendSimpleEmail(email);
+      const body: any = { email: email };
+      await axios('https://api.nuwe.io/email/femhackPipeline', { params: body });
       ticketNumber = await redis.incr('count');
       createdAt = Date.now();
       await redis.hmset(

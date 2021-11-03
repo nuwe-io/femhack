@@ -78,11 +78,6 @@ export default async function sendUserChallengeInvite(email: string) {
 
   const accessToken: any = await oAuth2Client.getAccessToken();
 
-  if (!accessToken) {
-    console.log('No access token');
-    return false;
-  }
-
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -95,10 +90,7 @@ export default async function sendUserChallengeInvite(email: string) {
     }
   });
 
-  if (!transporter) {
-    console.log('No transporter');
-    return false;
-  }
+
 
   transporter.use(
     'compile',
@@ -174,32 +166,3 @@ export default async function sendUserChallengeInvite(email: string) {
 
   await scheduleEmailPipeline(pieplineObject, followup, lastAlertInfo);
 }
-
-export const sendSimpleEmail = async (email: string) => {
-  // Generate test SMTP service account from ethereal.email
-  // Only needed if you don't have a real mail account for testing
-  const testAccount = await nodemailer.createTestAccount();
-
-  // create reusable transporter object using the default SMTP transport
-  const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, // true for 465, false for other ports
-    auth: {
-      user: 'hello@nuwe.io', // generated ethereal user
-      pass: 'Nuwe.ioGsuite9!' // generated ethereal password
-    }
-  });
-
-  // send mail with defined transport object
-  const info = await transporter.sendMail({
-    from: '"Femhack crew 👻" <femhack@nuwe.io>', // sender address
-    to: email, // list of receivers
-    subject: 'Hello ✔', // Subject line
-    text: 'Hello world?', // plain text body
-    html: '<b>Hello world?</b>' // html body
-  });
-
-  console.log('Message sent: %s', info.messageId);
-  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-};
