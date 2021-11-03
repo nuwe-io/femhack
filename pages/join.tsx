@@ -48,12 +48,12 @@ export default function Join() {
             </h1>
             <div className={cn(styleUtils.appear, styleUtils['appear-third'])}>
               <p className={styles.pdiv}>
-                If you join as a competetior you'll also be joining as a viewer, so do not worry.
+                If you join as a competitor you'll also be joining as a viewer, so do not worry.
                 We'll keep you updated every step of the way
               </p>
               <div className={styles.buttonsdiv}>
                 <div style={{ margin: '20px' }}>
-                  <Link href="https://nuwe.io/femhack">
+                  <Link href="https://nuwe.io/event/femhack">
                     <button type="button" className={styles.button}>
                       Be a competitor
                     </button>

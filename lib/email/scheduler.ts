@@ -5,13 +5,13 @@ import schedule from 'node-schedule';
 import Mail from 'nodemailer/lib/mailer';
 
 type ScheduleObject = {
-  setDate: string; // 2021-10-26 14:13:00
+  setDate: Date; // 2021-10-26 14:13:00
   transporter: Mail;
   mailOptions: any;
 };
 
 type PipelineObject = {
-  setDate: string; // 2021-10-26 14:13:00
+  setDate: Date; // 2021-10-26 14:13:00
   transporter: Mail;
   mailOptions: any;
   followOptions: any;
@@ -29,7 +29,7 @@ type PipelineAlert = {
   type: MomentTypes;
 };
 
-const setUpSchdule = (rule: schedule.RecurrenceRule, date: any) => {
+const setUpSchdule = (rule: schedule.RecurrenceRule, date: Date) => {
   rule.tz = 'Europe/Madrid';
   rule.year = moment(date).year();
   rule.month = moment(date).month();
@@ -71,10 +71,10 @@ export const scheduleEmailPipeline = async (
   await transporter.sendMail(mailOptions);
 
   // Followup
-  scheduleEmail({ setDate: followupDate, transporter, mailOptions: followOptions });
+  scheduleEmail({ setDate: new Date(followupDate), transporter, mailOptions: followOptions });
 
   // Last alert
-  scheduleEmail({ setDate: beforeStart, transporter, mailOptions: alertOptions });
+  scheduleEmail({ setDate: new Date(beforeStart), transporter, mailOptions: alertOptions });
 
   // Send when starts
   scheduleEmail({ setDate, transporter, mailOptions: liveOptions });

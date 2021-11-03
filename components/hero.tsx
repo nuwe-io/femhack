@@ -17,8 +17,8 @@ export default function Hero() {
         {SITE_DESCRIPTION}
       </h2>
       <h1 className={cn(styleUtils.appear, styleUtils['appear-third'], styles.hero)}>
-        The first International
-        <br className={styleUtils['show-on-desktop']} /> women-only Hackathon
+        Listen to the top
+        <br className={styleUtils['show-on-desktop']} /> tech female liders
       </h1>
       <h2
         className={cn(
