@@ -149,7 +149,7 @@ export default async function sendUserChallengeInvite(email: string) {
   };
 
   const pieplineObject = {
-    setDate: '2021-10-29 14:00:00',
+    setDate: new Date('2021-10-29 14:00:00'),
     transporter: transporter,
     mailOptions: firstMailOptions,
     followOptions: followMailOptions,
