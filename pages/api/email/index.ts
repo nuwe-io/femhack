@@ -160,5 +160,7 @@ export default async function sendUserChallengeInvite(email: string) {
   const followup = { time: 1, type: MomentTypes.days };
   const lastAlertInfo = { time: 1, type: MomentTypes.hours };
 
+  console.log('Calling to send the first email');
+
   await scheduleEmailPipeline(pieplineObject, followup, lastAlertInfo);
 }

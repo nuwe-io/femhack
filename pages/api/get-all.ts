@@ -11,10 +11,12 @@ export default async function getAll(req: NextApiRequest, res: NextApiResponse) 
     filteredValues.forEach(element => {
       console.log(element);
       redis
-        ?.hmget(element, 'name', 'email', 'username', 'image', 'createdAt')
+        ?.hmget(element, 'name', 'email', 'username')
         .then((resp: any) => console.log(resp))
         .catch(err => console.log(err));
     });
+
+    // await redis.del('id:dffc5f2ff789bb8215db2f38979f7ca5c155230d');
   }
 
   res.send('Hola');
