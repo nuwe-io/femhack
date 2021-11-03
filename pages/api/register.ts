@@ -59,7 +59,7 @@ export default async function register(
       createdAt = parseInt(item[2]!, 10);
       statusCode = 200;
     } else {
-      await sendUserChallengeInvite(email);
+      // await sendUserChallengeInvite(email);
       ticketNumber = await redis.incr('count');
       createdAt = Date.now();
       await redis.hmset(
