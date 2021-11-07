@@ -18,7 +18,8 @@ export default function TicketActions({ username }: Props) {
   const downloadLink = useRef<HTMLAnchorElement>();
   const permalink = encodeURIComponent(`${SITE_URL}/tickets/${username}`);
   const text = encodeURIComponent(TWEET_TEXT);
-  const tweetUrl = `https://twitter.com/intent/tweet?url=${permalink}&via=vercel&text=${text}`;
+  // check nuwe twitter
+  const tweetUrl = `https://twitter.com/intent/tweet?url=${permalink}&via=NuweIo&text=${text}`;
   const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${permalink}`;
   const downloadUrl = `/api/ticket-images/${username}`;
 
