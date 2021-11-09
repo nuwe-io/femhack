@@ -16,7 +16,7 @@ export default async function getAll(req: NextApiRequest, res: NextApiResponse) 
         .catch(err => console.log(err));
     });
 
-    // await redis.del('id:d45820f8734dbbf6c739628a84875a0d4df8657c');
+    // await redis.del('id:dffc5f2ff789bb8215db2f38979f7ca5c155230d');
   }
 
   res.send('Hola');

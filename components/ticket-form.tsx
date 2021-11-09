@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { useState, useRef } from 'react';
 import { scrollTo } from '@lib/smooth-scroll';
 import cn from 'classnames';
@@ -28,12 +30,10 @@ type UserProps = {
   focused: boolean;
   name: string;
   username: string;
-  profileImage: string;
   submit: any;
   setName: any;
   setFocused: any;
   setUsername: any;
-  setProfileImage: any;
   formState: FormState;
 };
 
@@ -41,11 +41,9 @@ const UserInfoForm = ({
   formRef,
   focused,
   name,
-  profileImage,
   submit,
   setName,
   setFocused,
-  setProfileImage,
   formState
 }: UserProps) => {
   return (
@@ -70,31 +68,6 @@ const UserInfoForm = ({
             aria-label="Your full name"
             required
           />
-        </label>
-      </div>
-      <div style={{ height: '10px' }} />
-      <div className={cn(formStyles['form-row'], ticketFormStyles['form-row'])}>
-        <label
-          htmlFor="profile-input-field"
-          className={cn(formStyles['input-label'], {
-            [formStyles.focused]: focused
-          })}
-        >
-          <input
-            className={formStyles.input}
-            autoComplete="off"
-            type="string"
-            id="profile-input-field"
-            value={profileImage}
-            onChange={e => setProfileImage(e.target.value)}
-            onFocus={() => setFocused(true)}
-            onBlur={() => setFocused(false)}
-            placeholder="Url of the image"
-            aria-label="Url of the image"
-          />
-          <legend style={{ margin: '0 10px', color: 'var(--green)', fontSize: '10px' }}>
-            If image not set, a random cat avatar will appear
-          </legend>
         </label>
       </div>
       <div className={cn(formStyles['form-row'], ticketFormStyles['form-row'])}>
@@ -146,7 +119,6 @@ export default function Form({ defaultUsername = '', setTicketGenerationState }:
   const formRef = useRef<HTMLFormElement>(null);
   const [focused, setFocused] = useState(false);
   const [name, setName] = useState('');
-  const [profileImage, setProfileImage] = useState('');
 
   const submit = async (e: any) => {
     e.preventDefault();
@@ -165,25 +137,23 @@ export default function Form({ defaultUsername = '', setTicketGenerationState }:
         id: userData.id,
         username: name.toLowerCase().split(' ').join(''),
         name: name,
-        image: profileImage
+        image: ''
       })
       .then((res: any) => {
         const usernameFromResponse = res.data.username;
         const nameFromResponse = res.data.name;
-        const imageFormReponse = res.data.image;
         document.body.classList.add('ticket-generated');
         setUserData({
           ...userData,
           username: usernameFromResponse,
-          name: nameFromResponse,
-          image: imageFormReponse
+          name: nameFromResponse
         });
         setUsername(usernameFromResponse);
         setFormState('default');
         setTicketGenerationState('default');
 
         // Prefetch the twitter share URL to eagerly generate the page
-        fetch(`/tickets/${usernameFromResponse}`).catch(_ => {});
+        fetch(`/tickets/${usernameFromResponse}`).catch(error => console.log(error));
       })
       .catch(err => {
         // eslint-disable-next-line no-console
@@ -219,12 +189,10 @@ export default function Form({ defaultUsername = '', setTicketGenerationState }:
       focused={focused}
       name={name}
       username={username}
-      profileImage={profileImage}
       submit={submit}
       setName={setName}
       setFocused={setFocused}
       setUsername={setUsername}
-      setProfileImage={setProfileImage}
       formState={formState}
     />
   );

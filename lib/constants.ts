@@ -6,7 +6,7 @@ export const SITE_NAME_MULTILINE = ['International', 'FemHack'];
 export const SITE_NAME = 'International FemHack';
 export const META_DESCRIPTION =
   'The International FemHack is an online event composed of a female-only international Hackaton on the modalities of Frontend, Backend and Data Science and a series of talks by tech industry leaders opened for everyone.';
-export const SITE_DESCRIPTION = 'Listen to the top tech female liders from comapnies such as Google or Novartis';
+export const SITE_DESCRIPTION = 'Listen to the top tech female leaders from companies such as Google or Novartis';
 export const DATE = 'January 21-23, 2022';
 export const SHORT_DATE = 'Jan 21 - 5:00pm CEST';
 export const FULL_DATE = 'Jan 21th 5pm Central European Summer Time (UTC+2)';

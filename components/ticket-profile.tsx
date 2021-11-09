@@ -8,18 +8,11 @@ import IconShare from './icons/icon-share';
 type Props = {
   name?: string;
   username?: string;
-  image?: string;
   size?: number;
   ticketGenerationState: TicketGenerationState;
 };
 
-export default function TicketProfile({
-  name,
-  username,
-  image,
-  size = 1,
-  ticketGenerationState
-}: Props) {
+export default function TicketProfile({ name, username, size = 1, ticketGenerationState }: Props) {
   return (
     <div className={styles.profile}>
       <span
@@ -29,7 +22,7 @@ export default function TicketProfile({
       >
         {username ? (
           <img
-            src={image || `https://robohash.org/${Math.random()}?set=set4`}
+            src={`https://robohash.org/${Math.random()}?set=set4`}
             alt={username}
             className={styles.image}
           />

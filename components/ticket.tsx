@@ -74,7 +74,7 @@ export default function Ticket({ username, ticketNumber, name, image, sharePage 
             ) : (
               <>
                 Generate a unique ticket image with <br className={styleUtils['hide-on-mobile']} />
-                your name and selected image.
+                your name.
               </>
             )}
           </p>
@@ -100,7 +100,6 @@ export default function Ticket({ username, ticketNumber, name, image, sharePage 
           <TicketVisual
             username={username}
             name={name}
-            image={image}
             ticketNumber={ticketNumber}
             ticketGenerationState={ticketGenerationState}
           />

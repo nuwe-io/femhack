@@ -20,7 +20,6 @@ type Props = {
 export default function TicketVisual({
   size = 1,
   name,
-  image,
   ticketNumber,
   username,
   ticketGenerationState = 'default'
@@ -36,7 +35,6 @@ export default function TicketVisual({
         </div>
         <div className={styles.profile}>
           <TicketProfile
-            image={image}
             name={name}
             username={username}
             size={size}
