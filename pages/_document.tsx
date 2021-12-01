@@ -21,6 +21,7 @@ export default class CustomDocument extends Document {
     return (
       <Html lang="en">
         <Head />
+        <meta name="facebook-domain-verification" content="3kzycq9gwzyuuklcwpazlynzqrf9qk" />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-6PBT74YNZ2"></script>
         <script
           type="text/javascript"
@@ -43,7 +44,7 @@ export default class CustomDocument extends Document {
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '593824471730067');
+            fbq('init', '593824471730067'); 
             fbq('track', 'PageView');`
           }}
         />
