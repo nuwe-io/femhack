@@ -21,6 +21,16 @@ export default class CustomDocument extends Document {
     return (
       <Html lang="en">
         <Head />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6PBT74YNZ2"></script>
+        <script
+          type="text/javascript"
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-6PBT74YNZ2');`
+          }}
+        />
         <body className="loading">
           <Main />
           <NextScript />

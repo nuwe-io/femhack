@@ -7,12 +7,13 @@ export default async function getAll(req: NextApiRequest, res: NextApiResponse) 
     const values = await redis.keys('*');
 
     const filteredValues = values.filter((val: string) => val.includes('id:'));
-
+    let sum = 0;
     filteredValues.forEach(element => {
+      sum += 1;
       console.log(element);
       redis
         ?.hmget(element, 'name', 'email', 'username')
-        .then((resp: any) => console.log(resp))
+        .then((resp: any) => console.log(sum))
         .catch(err => console.log(err));
     });
 
