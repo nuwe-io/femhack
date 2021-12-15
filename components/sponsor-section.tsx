@@ -65,7 +65,7 @@ export default function SponsorSection({ sponsor }: Props) {
             >
               {sponsor.callToAction}
             </a>
-            <a
+            {/* <a
               href={sponsor.discord}
               target="_blank"
               rel="noopener noreferrer"
@@ -73,7 +73,7 @@ export default function SponsorSection({ sponsor }: Props) {
               className={cn(styles.button, styles['button-link'])}
             >
               Chat on Discord
-            </a>
+            </a> */}
           </div>
           <div className={styles.resources}>
             <h2 className={styles.heading}>Resources</h2>
