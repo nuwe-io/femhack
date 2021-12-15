@@ -20,7 +20,6 @@ export default class CustomDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
         {/* GOOGLE TAG MANAGER - SCRIPT */}
         <script
           type="text/javascript"
@@ -32,7 +31,7 @@ export default class CustomDocument extends Document {
             })(window,document,'script','dataLayer','GTM-P3PG3KG');`
           }}
         />
-
+        <Head />
         <body className="loading">
           <noscript
             dangerouslySetInnerHTML={{
