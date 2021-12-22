@@ -23,7 +23,7 @@ export default function Layout({ children, className, hideNav, layoutStyles }: P
       <div className={styles.background}>
         {!hideNav && (
           <header className={cn(styles.header)}>
-            <div className={styles['subheader']}>
+            <div className={styles.subheader}>
               <div className={styles['header-logos']}>
                 <MobileMenu key={router.asPath} />
                 <Link href="/">

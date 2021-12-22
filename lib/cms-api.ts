@@ -1,4 +1,4 @@
-import { Job, Sponsor, Stage, Speaker } from '@lib/types';
+import { Job, Sponsor, Stage, Speaker, Perk } from '@lib/types';
 
 import * as datoCmsApi from './cms-providers/dato';
 
@@ -7,6 +7,7 @@ let cmsApi: {
   getAllStages: () => Promise<Stage[]>;
   getAllSponsors: () => Promise<Sponsor[]>;
   getAllJobs: () => Promise<Job[]>;
+  getAllPerks: () => Promise<Perk[]>;
 };
 
 if (process.env.DATOCMS_READ_ONLY_API_TOKEN) {
@@ -16,7 +17,8 @@ if (process.env.DATOCMS_READ_ONLY_API_TOKEN) {
     getAllSpeakers: async () => [],
     getAllStages: async () => [],
     getAllSponsors: async () => [],
-    getAllJobs: async () => []
+    getAllJobs: async () => [],
+    getAllPerks: async () => []
   };
 }
 
@@ -34,4 +36,8 @@ export async function getAllSponsors(): Promise<Sponsor[]> {
 
 export async function getAllJobs(): Promise<Job[]> {
   return cmsApi.getAllJobs();
+}
+
+export async function getAllPerks(): Promise<Perk[]> {
+  return cmsApi.getAllPerks();
 }

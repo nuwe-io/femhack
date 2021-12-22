@@ -3,6 +3,7 @@ import Image from 'next/image';
 import cn from 'classnames';
 import { Sponsor } from '@lib/types';
 import styles from './sponsors-grid.module.css';
+import Header from '@components/header';
 
 function SponsorCard({ sponsor }: { sponsor: Sponsor }) {
   return (
@@ -47,15 +48,32 @@ type Props = {
 
 export default function SponsorsGrid({ sponsors }: Props) {
   const silverSponsors = sponsors.filter(s => s.tier === 'silver');
-  const otherSponsors = sponsors.filter(s => s.tier !== 'silver');
+  const diamondSponsors = sponsors.filter(s => s.tier === 'diamond');
+  const platinumSponsors = sponsors.filter(s => s.tier === 'Platinum');
 
   return (
     <>
+      <Header
+        hero="Game changers"
+        // Game changers are companies not just committed to the cause but they are also looking for the best TOP candidates and will be hiring talent to close the gap.
+        description=""
+      />
       <div className={styles.grid}>
-        {otherSponsors.map(sponsor => (
+        {diamondSponsors.map(sponsor => (
           <SponsorCard key={sponsor.name} sponsor={sponsor} />
         ))}
       </div>
+      <Header hero="Evangelists" description="" />
+      <div className={styles.grid}>
+        {platinumSponsors.map(sponsor => (
+          <SponsorCard key={sponsor.name} sponsor={sponsor} />
+        ))}
+      </div>
+      <Header
+        hero="Supporters"
+        // Game changers are companies not just committed to the cause but they are also looking for the best TOP candidates and will be hiring talent to close the gap.
+        description=""
+      />
       <div className={styles.grid}>
         {silverSponsors.map(sponsor => (
           <SponsorCard key={sponsor.name} sponsor={sponsor} />

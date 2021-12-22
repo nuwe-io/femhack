@@ -14,6 +14,13 @@ export type Speaker = {
   image: Image;
   imageSquare: Image;
 };
+export type Talk = {
+  title: string;
+  description: string;
+  start: string;
+  end: string;
+  speaker: Speaker[];
+};
 
 export type Stage = {
   name: string;
@@ -23,15 +30,12 @@ export type Stage = {
   schedule: Talk[];
 };
 
-export type Talk = {
-  title: string;
-  description: string;
-  start: string;
-  end: string;
-  speaker: Speaker[];
+export type Link = {
+  url: string;
 };
 
-export type Link = {
+export type SponsorLink = {
+  text: string;
   url: string;
 };
 
@@ -48,11 +52,6 @@ export type Sponsor = {
   cardImage: Image;
   logo: Image;
   youtubeSlug: string;
-};
-
-export type SponsorLink = {
-  text: string;
-  url: string;
 };
 
 export type Job = {
@@ -73,6 +72,15 @@ export type ConfUser = {
   image?: string;
   username?: string;
   createdAt: number;
+};
+
+export type Perk = {
+  id: string;
+  companyName: string;
+  title: string;
+  description: string;
+  link: string;
+  code: string;
 };
 
 export type GitHubOAuthData =

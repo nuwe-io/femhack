@@ -1,4 +1,5 @@
-import { Job, Sponsor, Stage, Speaker } from '@lib/types';
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+import { Job, Sponsor, Stage, Speaker, Perk } from '@lib/types';
 
 const API_URL = 'https://graphql.datocms.com/';
 const API_TOKEN = process.env.DATOCMS_READ_ONLY_API_TOKEN;
@@ -23,6 +24,7 @@ async function fetchCmsAPI(query: string, { variables }: { variables?: Record<st
     throw new Error('Failed to fetch API');
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return json.data;
 }
 
@@ -127,4 +129,21 @@ export async function getAllJobs(): Promise<Job[]> {
   `);
 
   return data.allJobs;
+}
+
+export async function getAllPerks(): Promise<Perk[]> {
+  const data = await fetchCmsAPI(`
+    {
+      allPerks(first: 100) {
+        companyName
+        description
+        link
+        id
+        title
+        code
+      }
+    }
+  `);
+
+  return data.allPerks;
 }
