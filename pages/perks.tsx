@@ -25,7 +25,7 @@ export default function Perks({ perks }: Props) {
   return (
     <Page meta={meta}>
       <Layout>
-        <Header hero="Femhack's perks" description={perksDesription} />
+        <Header hero="Femhack's grants" description={perksDesription} />
         <PerksGrid perks={perks} />
       </Layout>
     </Page>

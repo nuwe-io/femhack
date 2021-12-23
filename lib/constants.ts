@@ -44,7 +44,7 @@ export const NAVIGATION = [
     route: '/jobs'
   },
   {
-    name: 'Perks',
+    name: 'Grants',
     route: '/perks'
   }
 ];
