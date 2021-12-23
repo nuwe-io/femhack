@@ -45,7 +45,7 @@ export const NAVIGATION = [
   },
   {
     name: 'Grants',
-    route: '/perks'
+    route: '/grants'
   }
 ];
 
