@@ -22,7 +22,7 @@ export default function StagePage({ stage, allStages }: Props) {
     <Page meta={meta} fullViewport>
       <Layout>
         <iframe
-          src="https://player.twitch.tv/?nuwe_io&parent=https://www.nuwe.io"
+          src="https://player.twitch.tv/?nuwe_io&parent=https://femhack.nuwe.io"
           allowFullScreen={true}
           scrolling="no"
           height="378"
