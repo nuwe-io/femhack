@@ -30,13 +30,13 @@ export default function StageContainer({ stage, allStages }: Props) {
         {loginStatus === 'loggedIn' ? (
           <div className={cn(styles.stream, styleUtils.appear, styleUtils['appear-first'])}>
             <Timer />
-            <iframe
-              src="https://player.twitch.tv/?channel=nuwe_io&parent=femhack.nuwe.io"
+            {/*<iframe
+              src="https://player.twitch.tv/?channel=nuwe_io&parent=localhost"
               allowFullScreen={true}
               scrolling="no"
               height="378"
               width="620"
-            ></iframe>
+            ></iframe>*/}
 
             <div className={cn(styles.bottom, styleUtils.appear, styleUtils['appear-second'])}>
               <div className={styles.messageContainer}>
