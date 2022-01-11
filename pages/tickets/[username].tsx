@@ -35,7 +35,7 @@ export default function TicketShare({
         url: `${SITE_URL}/tickets/${username}`
       }
     : {
-        title: 'Ticket Demo - Virtual Event Starter Kit',
+        title: 'Femhack - Tickets',
         description: META_DESCRIPTION,
         image: image,
         url: `${SITE_URL}/tickets/${usernameFromParams}`
