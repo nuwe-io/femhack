@@ -30,15 +30,7 @@ export default function StageContainer({ stage, allStages }: Props) {
         {loginStatus === 'loggedIn' ? (
           <div className={cn(styles.stream, styleUtils.appear, styleUtils['appear-first'])}>
             <Timer />
-            {/*<div>
-              <TwitchEmbed
-                style={{ width: '100%', height: 600 }}
-                channel="Nuwe_io"
-                id="nuwe_io"
-                theme="dark"
-                muted
-              />
-            </div>*/}
+
             <div className={cn(styles.bottom, styleUtils.appear, styleUtils['appear-second'])}>
               <div className={styles.messageContainer}>
                 <h2 className={styles.stageName}>{stage.name}</h2>
@@ -76,3 +68,13 @@ export default function StageContainer({ stage, allStages }: Props) {
     </div>
   );
 }
+
+/**
+ * <TwitchE
+                style={{ width: '100%', height: 600 }}
+                channel="Nuwe_io"
+                id="nuwe_io"
+                theme="dark"
+                muted
+              />
+ */

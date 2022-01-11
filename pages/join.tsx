@@ -32,7 +32,7 @@ export default function Join() {
             </h1>
             <div className={cn(styleUtils.appear, styleUtils['appear-third'])}>
               <p className={styles.pdiv}>
-                If you join as a competitor you'll also be joining as a viewer, so do not worry.
+                If you join as a competitor you'll also be joining as a listener, so do not worry.
                 We'll keep you updated every step of the way
               </p>
               <div className={styles.buttonsdiv}>
@@ -51,6 +51,14 @@ export default function Join() {
                     </button>
                   </Link>
                 </div>
+              </div>
+              <div className={styles.pdiv}>
+                An international women-only Hackathon opened to all levels of expertise, and a
+                series of talks from tech industry leaders.
+              </div>
+              <div className={styles.pdiv}>
+                With the purpose to give more visibility to women in tech, promote more female
+                employers and create female role models for the next generations.
               </div>
             </div>
           </div>

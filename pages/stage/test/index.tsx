@@ -1,12 +1,11 @@
-import { GetStaticProps, GetStaticPaths } from 'next';
+import { GetStaticProps } from 'next';
 
 import Page from '@components/page';
-import StageContainer from '@components/stage-container';
 import Layout from '@components/layout';
-
 import { getAllStages } from '@lib/cms-api';
 import { Stage } from '@lib/types';
 import { META_DESCRIPTION } from '@lib/constants';
+import StageContainer from '@components/stage-container';
 
 type Props = {
   stage: Stage;
@@ -22,14 +21,20 @@ export default function StagePage({ stage, allStages }: Props) {
   return (
     <Page meta={meta} fullViewport>
       <Layout>
-        <StageContainer stage={stage} allStages={allStages} />
+        <iframe
+          src="https://player.twitch.tv/?nuwe_io&parent=https://www.nuwe.io"
+          allowFullScreen={true}
+          scrolling="no"
+          height="378"
+          width="620"
+        ></iframe>
       </Layout>
     </Page>
   );
 }
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  const slug = params?.slug;
+  const slug = 'friday';
   const stages = await getAllStages();
   const stage = stages.find((s: Stage) => s.slug === slug) || null;
 
@@ -45,15 +50,5 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       allStages: stages
     },
     revalidate: 60
-  };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const stages = await getAllStages();
-  const slugs = stages.map((s: Stage) => ({ params: { slug: s.slug } }));
-
-  return {
-    paths: slugs,
-    fallback: false
   };
 };

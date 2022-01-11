@@ -39,6 +39,7 @@
 
 .pdiv {
   margin: var(--space-4x);
+  text-align: center;
   color: #fff;
 }
 
