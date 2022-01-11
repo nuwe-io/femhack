@@ -31,7 +31,7 @@ export default function StageContainer({ stage, allStages }: Props) {
           <div className={cn(styles.stream, styleUtils.appear, styleUtils['appear-first'])}>
             <Timer />
             <iframe
-              src="https://player.twitch.tv/?channel=nuwe_io&parent=femhack.nuwe_io"
+              src="https://player.twitch.tv/?channel=nuwe_io&parent=femhack.nuwe.io"
               allowFullScreen={true}
               scrolling="no"
               height="378"
