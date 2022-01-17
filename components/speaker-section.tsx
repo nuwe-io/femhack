@@ -60,36 +60,6 @@ export default function SpeakerSection({ speaker }: Props) {
             </p>
             <h2 className={styles['bio-header']}>Bio</h2>
             <p className={styles.bio}>{speaker.bio}</p>
-            <h3 className={styles['socials-header']}>Social Media</h3>
-            {speaker.twitter ? (
-              <a
-                aria-label="Twitter"
-                href={speaker.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <TwitterIcon />
-              </a>
-            ) : (
-              <span className={styles.disabled}>
-                <TwitterIcon />
-              </span>
-            )}
-            {speaker.github ? (
-              <a
-                aria-label="GitHub"
-                className={styles.githubIcon}
-                href={speaker.github}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <GithubIcon color="#D8D8D8" size={24} />
-              </a>
-            ) : (
-              <span className={cn(styles.githubIcon, styles.disabled)}>
-                <GithubIcon color="#D8D8D8" size={24} />
-              </span>
-            )}
           </div>
         </div>
       </div>
