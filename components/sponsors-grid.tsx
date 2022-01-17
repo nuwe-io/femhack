@@ -7,7 +7,7 @@ import Header from '@components/header';
 
 function SponsorCard({ sponsor }: { sponsor: Sponsor }) {
   return (
-    <Link key={sponsor.name} href={`/expo/${sponsor.slug}`}>
+    <Link key={sponsor.name} href={`/sponsors/${sponsor.slug}`}>
       <a
         role="button"
         tabIndex={0}
