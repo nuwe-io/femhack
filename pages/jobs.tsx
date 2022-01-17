@@ -8,6 +8,7 @@ import Header from '@components/header';
 import { getAllJobs } from '@lib/cms-api';
 import { Job } from '@lib/types';
 import { META_DESCRIPTION } from '@lib/constants';
+import { Button } from '@nuwe/components';
 
 type Props = {
   jobs: Job[];
