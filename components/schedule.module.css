@@ -14,7 +14,7 @@
 .row {
   display: flex;
   flex-direction: column;
-  margin: 0 24px;
+  margin: 0 54px;
   width: 100%;
 }
 
@@ -35,7 +35,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  margin-left: -250px;
+  margin-left: 0px;
   padding-top: 50px;
 }
 
@@ -45,18 +45,20 @@
 
 @media (min-width: 500px) {
   .container {
-    margin-top: var(--space-4x);
+    margin-top: var(--space-2x);
   }
 
   .row {
     margin: 0 var(--space-8x) 0 0;
     flex-direction: row;
     padding: var(--space-8x) 0;
+    
   }
 
   .talks {
     flex-direction: row;
     margin-top: 0;
+    margin-left: -250px;
   }
 
   .stage-name {
