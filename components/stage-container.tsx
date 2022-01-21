@@ -30,7 +30,7 @@ export default function StageContainer({ stage, allStages }: Props) {
         {loginStatus === 'loggedIn' ? (
           <div className={cn(styles.stream, styleUtils.appear, styleUtils['appear-first'])}>
             <iframe
-              src="https://player.twitch.tv/?channel=nuwe_io&parent=localhost"
+              src="https://player.twitch.tv/?channel=nuwe_io&parent=femhack.nuwe.io"
               allowFullScreen={true}
               scrolling="no"
               height="378"
