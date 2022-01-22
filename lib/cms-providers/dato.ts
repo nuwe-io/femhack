@@ -19,7 +19,6 @@ async function fetchCmsAPI(query: string, { variables }: { variables?: Record<st
 
   const json = await res.json();
   if (json.errors) {
-    // eslint-disable-next-line no-console
     console.error(json.errors);
     throw new Error('Failed to fetch API');
   }
